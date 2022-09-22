@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\PollController;
+use App\Http\Controllers\API\QuestionController;
+use App\Http\Controllers\API\AnswerController;
+
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
@@ -20,6 +24,13 @@ Route::controller(UserController::class)->group(function () {
     Route::put('user/{id}', 'update');
     Route::delete('user/{id}', 'destroy');
 });
+
+
+Route::apiResource("polls", PollController::class);
+
+Route::apiResource("questions", QuestionController::class);
+
+Route::apiResource("answers", AnswerController::class);
 
 //EXEMPLE
 
