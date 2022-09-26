@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Models\Poll;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class QuestionController extends Controller
 {
@@ -91,6 +92,16 @@ class QuestionController extends Controller
     return response()->json($question, 201);
     }
 
+    public function toto(Poll $id)
+    {
+        $questionPoll = DB::table('questions')
+        ->select('nameQuestion')
+        ->where('questions.polls_id', '=', $id->id)
+        ->get();
+        // dd($id);
+       return response()->json($questionPoll);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -104,4 +115,6 @@ class QuestionController extends Controller
         return response()->json([
             'status' => 'Supprimer avec succès avec succèss']);
     }
+
+  
 }

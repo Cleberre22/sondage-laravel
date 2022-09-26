@@ -16,9 +16,9 @@ class PollController extends Controller
     public function index()
     {
         // On récupère tous les sondages
-$polls = Poll::all();
-// On retourne les informations des sondages en JSON
-return response()->json($polls);
+        $polls = Poll::all();
+        // On retourne les informations des sondages en JSON
+        return response()->json($polls);
     }
 
     /**
@@ -31,17 +31,16 @@ return response()->json($polls);
     {
         $request->validate([
             'nameSondage' => 'required|max:100',
-            ]);
-            // On crée un nouveau sondage
-            $poll = Poll::create([
+        ]);
+        // On crée un nouveau sondage
+        $poll = Poll::create([
             'nameSondage' => $request->nameSondage,
-            ]);
-            // On retourne les informations du nouveau sondage en JSON
-            return response()->json([
+        ]);
+        // On retourne les informations du nouveau sondage en JSON
+        return response()->json([
             'status' => 'Success',
             'data' => $poll,
-            ]);
-            
+        ]);
     }
 
     /**
@@ -53,7 +52,7 @@ return response()->json($polls);
     public function show(Poll $poll)
     {
         // On retourne les informations du sondage en JSON
-return response()->json($poll);
+        return response()->json($poll);
     }
 
     /**
@@ -67,14 +66,15 @@ return response()->json($poll);
     {
         $this->validate($request, [
             'nameSondage' => 'required|max:100',
-            ]);
-            // On modifie le sondage
-            $poll->update([
+        ]);
+        // On modifie le sondage
+        $poll->update([
             'nameSondage' => $request->nameSondage,
-            ]);
-            // On retourne les informations du sondage modifié en JSON
-            return response()->json([
-            'status' => 'Mise à jour avec succèss']);
+        ]);
+        // On retourne les informations du sondage modifié en JSON
+        return response()->json([
+            'status' => 'Mise à jour avec succèss'
+        ]);
     }
 
     /**
@@ -86,9 +86,10 @@ return response()->json($poll);
     public function destroy(Poll $poll)
     {
         // On supprime le sondage
-$poll->delete();
-// On retourne la réponse JSON
-return response()->json([
-'status' => 'Supprimer avec succès avec succèss']);
+        $poll->delete();
+        // On retourne la réponse JSON
+        return response()->json([
+            'status' => 'Supprimer avec succès avec succèss'
+        ]);
     }
 }

@@ -68,6 +68,16 @@ class AnswerController extends Controller
        return response()->json($answer);
     }
 
+    public function toto2(Answer $id)
+    {
+        $answerQuestion = DB::table('answers')
+        ->select('answers.*')
+        ->where('answers.questions_id', '=', $id->id)
+        ->get();
+        // dd($id);
+       return response()->json($answerQuestion);
+    }
+
     /**
      * Update the specified resource in storage.
      *
