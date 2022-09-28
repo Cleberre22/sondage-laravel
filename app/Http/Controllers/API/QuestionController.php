@@ -61,9 +61,10 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         $question = DB::table('questions')
-        ->leftjoin('polls', 'polls.id', '=', 'questions.polls_id')
-        ->select('questions.*','nameSondage')
-        ->where('questions.id', '=', $question->id)
+        ->join('polls', 'polls.id', '=', 'questions.polls_id')
+        ->join('answers', 'questions.id', '=', 'answers.questions_id')
+        ->select('questions.*', 'nameSondage', 'nameAnswer', 'question.id')
+        // ->where('questions.id', '=', $question->id)
         ->get();
         
        return response()->json($question);
@@ -95,7 +96,7 @@ class QuestionController extends Controller
     public function toto(Poll $id)
     {
         $questionPoll = DB::table('questions')
-        ->select('nameQuestion')
+        ->select('nameQuestion','id')
         ->where('questions.polls_id', '=', $id->id)
         ->get();
         // dd($id);

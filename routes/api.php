@@ -37,7 +37,7 @@ Route::controller(QuestionController::class)->group(function () {
     Route::get('question-poll/{id}', 'toto');
 });
 
-// Route::apiResource("answers", AnswerController::class);
+Route::apiResource("answers", AnswerController::class);
 Route::controller(AnswerController::class)->group(function () {
     Route::get('answers', 'index');
     Route::post('answer', 'store');
